@@ -1,0 +1,47 @@
+{
+  "symbol": "BTCUSDT.P",
+  "timeframes": ["15", "1H", "4H", "1D"],
+  "primaryTimeframe": "4H",
+
+  "intervals": {
+    "activeMarket": 300000,
+    "quietMarket": 900000,
+    "volatileMarket": 120000
+  },
+
+  "bollingerBands": {
+    "length": 20,
+    "stdDev": 2,
+    "source": "close"
+  },
+
+  "fvg": {
+    "minGapPercent": 0.15,
+    "maxAge": 50,
+    "respectOnlyUnmitigated": true
+  },
+
+  "erl": {
+    "lookbackBars": 100,
+    "sweepThreshold": 0.05,
+    "significantLevels": ["daily_high", "daily_low", "weekly_high", "weekly_low", "swing_high", "swing_low"]
+  },
+
+  "stdDeviation": {
+    "periods": [20, 50, 100],
+    "extremeThreshold": 2.5,
+    "alertOnExpansion": true
+  },
+
+  "alerts": {
+    "enabled": true,
+    "logToFile": true,
+    "logPath": "./logs"
+  },
+
+  "tokenOptimization": {
+    "summaryMode": true,
+    "maxBarsPerRequest": 100,
+    "deduplicateLevels": true
+  }
+}

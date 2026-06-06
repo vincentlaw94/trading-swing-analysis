@@ -1,0 +1,15 @@
+{
+  "name": "trading-swing-analysis",
+  "version": "1.0.0",
+  "description": "Crypto swing trading analysis with Bollinger Bands, FVGs, ERL sweeps, and ICT methodology",
+  "main": "src/agent.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/agent.js",
+    "analyze": "node src/analyze-once.js",
+    "test": "node src/test-connection.js"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}
