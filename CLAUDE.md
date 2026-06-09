@@ -130,6 +130,56 @@ TP2:    -1.5 SD level
 TP3:    -2.0 SD level
 ```
 
+## Economic Events Consideration
+
+**Always check upcoming economic events before making trade recommendations.**
+
+### High Impact Events (Avoid new entries 30 min before/after)
+
+| Event | Typical Release | Impact on BTC |
+|-------|-----------------|---------------|
+| **CPI** | ~10th of month, 8:30 AM ET | Hot = Bearish, Cool = Bullish |
+| **PPI** | ~11th of month, 8:30 AM ET | Leading indicator for CPI |
+| **FOMC** | 8x/year, 2:00 PM ET | Rate decisions move all risk assets |
+| **NFP** | First Friday, 8:30 AM ET | Jobs data affects Fed policy outlook |
+| **Jobless Claims** | Every Thursday, 8:30 AM ET | Weekly labor market pulse |
+
+### How to Check Events
+
+Use web search to find current week's economic calendar:
+```
+Search: "US economic calendar [current week] CPI FOMC PPI"
+```
+
+Reliable sources:
+- [Trading Economics](https://tradingeconomics.com/united-states/calendar)
+- [Forex Factory](https://www.forexfactory.com/calendar)
+- [BLS Release Schedule](https://www.bls.gov/schedule/news_release/current_year.asp)
+- [Federal Reserve FOMC Calendar](https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm)
+
+### Trading Rules Around Events
+
+1. **Before CPI/FOMC:** Reduce position size or close positions
+2. **During release:** No new entries - wait for dust to settle
+3. **After release:** Wait 15-30 min for true direction to emerge
+4. **Fakeout warning:** Initial move often reverses within first 5-15 minutes
+
+### Event Impact Matrix
+
+| Scenario | CPI/PPI | FOMC | Effect on BTC |
+|----------|---------|------|---------------|
+| **Bullish** | Below consensus | Dovish/Rate cut | Risk-on rally |
+| **Neutral** | In-line | As expected | Minimal move |
+| **Bearish** | Above consensus | Hawkish/Rate hike | Risk-off selloff |
+
+### Crypto-Specific Events
+
+Also monitor:
+- **Bitcoin ETF flows** (daily) - Sustained outflows = bearish pressure
+- **CME gaps** (weekend) - Unfilled gaps act as price magnets
+- **Options expiry** (monthly/quarterly) - Increased volatility
+- **Halving cycle** (every ~4 years) - Next: April 2028
+
 ## Signal Interpretation
 
 | Signal | BB Position | RSI | Action |
