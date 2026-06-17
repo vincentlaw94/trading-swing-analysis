@@ -1,5 +1,10 @@
 # Trading Swing Analysis
 
+## User Preferences
+
+- **Timezone**: Always display times in **Mountain Time (MT / UTC-07:00)**. Convert all UTC times to MT before displaying. Include both MT and UTC when relevant for trading sessions.
+- **ETA**: Always include ETA when discussing upcoming events or session times. Use minutes if under 2 hours (e.g., "~40 min"), otherwise use hours (e.g., "~3h").
+
 ## Quick Commands
 
 ```bash
@@ -69,53 +74,83 @@ Quick comparison of multiple assets:
 - Signal detection (Long/Short/Watch)
 - Highlights potential setups
 
+## Trading Skills Reference
+
+| Skill | File | Description |
+|-------|------|-------------|
+| **Trading Strategies** | `.claude/skills/trading-strategies.md` | ICT/SMC complete guide - Market Structure, Liquidity, FVG, Dealing Ranges, OB/Breakers, AMD, OTE, BPR, CISD, SD Targets |
+| **ICT Methodology** | `.claude/skills/ict-methodology.md` | Complete ICT concepts reference with IFVG, kill zones, Silver Bullet |
+| **Chart Analysis** | `.claude/skills/chart-analysis.md` | SMC analysis framework |
+
+### Slash Commands
+
+| Command | Description |
+|---------|-------------|
+| `/smc-analysis` | Full SMC chart analysis on any symbol |
+| `/ict-ref` | Quick ICT concepts reference |
+| `/btc` | Quick BTC analysis |
+| `/btc-full` | Multi-timeframe BTC analysis |
+| `/analyze` | Analyze any symbol |
+
 ## ICT Trading Methodology
 
-### Fair Value Gaps (FVG) - ENTRIES
+**Full Reference:** See `.claude/skills/ict-methodology.md` for complete ICT concepts.
+**Chart Analysis:** See `.claude/skills/chart-analysis.md` for Trader Mayne's SMC framework.
 
-FVGs are price inefficiencies created by impulsive moves:
+### Core Concepts Quick Reference
 
-| Type | Formation | Trading Use |
-|------|-----------|-------------|
-| **Bullish FVG** | Candle 3 low > Candle 1 high | Buy zone - price drops to fill |
-| **Bearish FVG** | Candle 3 high < Candle 1 low | Sell zone - price rises to fill |
+| Concept | Definition | Use |
+|---------|------------|-----|
+| **FVG** | 3-candle gap (inefficiency) | Entry zones |
+| **Order Block** | Last candle before displacement | Entry zones |
+| **Breaker Block** | Failed OB + liquidity sweep | High-prob entries |
+| **OTE Zone** | Fib 0.62-0.79 retracement | Optimal entries |
+| **Liquidity** | Stops above highs/below lows | Targets & sweeps |
 
-**Entry Strategy:**
-- Wait for price to enter FVG zone
-- Enter at FVG midpoint for optimal R:R
-- Stop loss OUTSIDE the FVG (not at edge)
+### Kill Zones (Mountain Time)
 
-### External Range Liquidity (ERL) - EXITS
+| Session | MT Time | Best For |
+|---------|---------|----------|
+| **London** | 12:00 AM - 3:00 AM | Highest probability moves |
+| **NY AM** | 5:00 AM - 8:00 AM | Session overlap, volume |
+| **Silver Bullet** | 8:00 AM - 9:00 AM | Algorithmic sweeps |
+| **London Close** | 8:00 AM - 10:00 AM | Reversals |
 
-ERL = Liquidity pools where stop losses accumulate:
+### Power of Three (AMD)
 
-| Level | Liquidity Type | What Happens |
-|-------|----------------|--------------|
-| **Above Swing Highs** | Buy stops (short SLs) | Price sweeps to trigger stops |
-| **Below Swing Lows** | Sell stops (long SLs) | Price sweeps to trigger stops |
+Daily price action phases:
+1. **A**ccumulation (Asian) - Range building
+2. **M**anipulation (London) - Judas Swing (fake move)
+3. **D**istribution (NY) - True directional move
 
-**Exit Strategy:**
-- Target 1: First ERL level (take partials)
-- Move stop to breakeven after Target 1
-- Let remainder ride to SD targets
+**Rule:** Enter OPPOSITE to the Judas Swing after confirmation.
 
-### Standard Deviations - PROFIT TARGETS
+### Optimal Trade Entry (OTE)
 
-Distance from 20-period mean:
+```
+Fibonacci Levels:
+0.50  → Equilibrium
+0.62  → OTE zone start
+0.705 → Sweet spot
+0.79  → OTE zone end
+1.00  → Invalidation
+```
 
-| Level | Use Case |
-|-------|----------|
-| **±1.0 SD** | Conservative target |
-| **±1.5 SD** | Standard target |
-| **±2.0 SD** | Extended target |
-| **±2.5 SD** | Maximum extension (rare) |
+### Unicorn Model (High Probability)
+
+Setup = **Breaker Block + FVG Overlap**
+- Breaker: Failed OB after liquidity sweep
+- Enter when price returns to overlap zone
+- Stop: 10-20 pips beyond zone
+- Target: 1:2+ R:R
 
 ### Combined Entry/Exit Framework
 
 **LONG SETUP:**
 ```
-Entry:  Bullish FVG midpoint (or lower BB if no FVG)
-Stop:   Below nearest sell stop ERL zone
+Entry:  Bullish FVG/OB in discount zone (below 50%)
+        OR OTE zone (0.62-0.79 fib)
+Stop:   Below nearest sell stop liquidity
 TP1:    First buy stop ERL (take 50%)
 TP2:    +1.5 SD level
 TP3:    +2.0 SD level
@@ -123,12 +158,21 @@ TP3:    +2.0 SD level
 
 **SHORT SETUP:**
 ```
-Entry:  Bearish FVG midpoint (or upper BB if no FVG)
-Stop:   Above nearest buy stop ERL zone
+Entry:  Bearish FVG/OB in premium zone (above 50%)
+        OR OTE zone (0.62-0.79 fib)
+Stop:   Above nearest buy stop liquidity
 TP1:    First sell stop ERL (take 50%)
 TP2:    -1.5 SD level
 TP3:    -2.0 SD level
 ```
+
+### Silver Bullet Strategy (8-9 AM MT)
+
+1. Determine HTF bias (4H/Daily)
+2. Mark overnight highs/lows as liquidity
+3. Wait for sweep within 8:00-9:00 AM MT
+4. Enter on FVG retest (NOT displacement)
+5. Target next liquidity (1:2+ R:R)
 
 ## Economic Events Consideration
 
@@ -176,9 +220,19 @@ Reliable sources:
 
 Also monitor:
 - **Bitcoin ETF flows** (daily) - Sustained outflows = bearish pressure
-- **CME gaps** (weekend) - Unfilled gaps act as price magnets
+- **CME gaps** (weekend) - ~77% fill rate, act as price magnets
+- **CME Reference Rate** - 9:00 AM MT daily (settlement price)
 - **Options expiry** (monthly/quarterly) - Increased volatility
 - **Halving cycle** (every ~4 years) - Next: April 2028
+
+### CME Gap Trading
+
+| Gap Type | Formation | Strategy |
+|----------|-----------|----------|
+| **Gap Up** | BTC rallies over weekend | Expect fill, fade rallies |
+| **Gap Down** | BTC drops over weekend | Expect fill, fade dips |
+
+**Note:** CME now trades 24/7 (as of 2026), with only 2-hour maintenance pause Saturday 9 PM - 11 PM MT.
 
 ## Signal Interpretation
 
