@@ -5,14 +5,28 @@
 - **Timezone**: Always display times in **Mountain Time (MT / UTC-07:00)**. Convert all UTC times to MT before displaying. Include both MT and UTC when relevant for trading sessions.
 - **ETA**: Always include ETA when discussing upcoming events or session times. Use minutes if under 2 hours (e.g., "~40 min"), otherwise use hours (e.g., "~3h").
 - **Full Analysis**: When user asks for "full analysis" on any symbol, **always draw on TradingView chart**:
+  0. **Clear Drawings** - Always clear existing drawings first (`draw_clear`) before adding new analysis
   1. **200 SMA** - Add Moving Average indicator with length 200 (trend filter)
   2. **FVGs (Fair Value Gaps)** - Green rectangles for bullish, red for bearish
   3. **Order Blocks** - Orange/blue rectangles with labels
   4. **Unicorn Entry zones** - Purple rectangles (Breaker + FVG overlap)
-  5. **Trend lines** - Connect swing highs (red) and swing lows (green)
-  6. **Liquidity levels** - Horizontal lines at swing highs (BSL) and lows (SSL)
-  7. **Labels** - Text annotations for each zone type
-  8. **Screenshot** - Capture and display the annotated chart
+     - Identify where a Breaker Block overlaps with an FVG
+     - Breaker = Failed Order Block after liquidity sweep (OB that got run through, then price reversed)
+     - Draw purple rectangle at the overlap zone only
+     - Label as "Unicorn" with direction (Bullish/Bearish)
+     - These are HIGH PROBABILITY entries - highlight in analysis summary
+  5. **SFP (Swing Failure Pattern)** - Yellow zones at recent swing highs/lows
+     - Identify where price swept a swing high/low with a wick but closed back in range
+     - Wick should be 2-3x the candle body size
+     - Draw yellow rectangle from wick extreme to close level
+     - Label as "SFP - Bearish" or "SFP - Bullish"
+     - Check for Failed Auction (FA) - subsequent failed retest of the SFP level
+     - If FA present, label as "SFP + FA" - VERY HIGH PROBABILITY setup (90%+)
+     - These are reversal signals - highlight in analysis summary
+  6. **Trend lines** - Connect swing highs (red) and swing lows (green)
+  7. **Liquidity levels** - Horizontal lines at swing highs (BSL) and lows (SSL)
+  8. **Labels** - Text annotations for each zone type
+  9. **Screenshot** - Capture and display the annotated chart
 
 ## Quick Commands
 
@@ -90,6 +104,7 @@ Quick comparison of multiple assets:
 | **Trading Strategies** | `.claude/skills/trading-strategies.md` | ICT/SMC complete guide - Market Structure, Liquidity, FVG, Dealing Ranges, OB/Breakers, AMD, OTE, BPR, CISD, SD Targets |
 | **ICT Methodology** | `.claude/skills/ict-methodology.md` | Complete ICT concepts reference with IFVG, kill zones, Silver Bullet |
 | **Chart Analysis** | `.claude/skills/chart-analysis.md` | SMC analysis framework |
+| **SFP & Failed Auction** | `.claude/skills/sfp-failed-auction.md` | Swing Failure Pattern + Failed Auction reversal strategy (Tom Dante / Market Profile) |
 
 ### Slash Commands
 
@@ -97,6 +112,7 @@ Quick comparison of multiple assets:
 |---------|-------------|
 | `/smc-analysis` | Full SMC chart analysis on any symbol |
 | `/ict-ref` | Quick ICT concepts reference |
+| `/sfp` | SFP & Failed Auction strategy reference |
 | `/btc` | Quick BTC analysis |
 | `/btc-full` | Multi-timeframe BTC analysis |
 | `/analyze` | Analyze any symbol |
@@ -115,6 +131,8 @@ Quick comparison of multiple assets:
 | **Breaker Block** | Failed OB + liquidity sweep | High-prob entries |
 | **OTE Zone** | Fib 0.62-0.79 retracement | Optimal entries |
 | **Liquidity** | Stops above highs/below lows | Targets & sweeps |
+| **SFP** | Sweep high/low, close back in range | Reversal signal (85-95%) |
+| **Failed Auction** | Retest fails to reach SFP extreme | Confirms reversal (90%+) |
 
 ### Kill Zones (Mountain Time)
 
