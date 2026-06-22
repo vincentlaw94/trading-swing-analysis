@@ -4,6 +4,15 @@
 
 - **Timezone**: Always display times in **Mountain Time (MT / UTC-07:00)**. Convert all UTC times to MT before displaying. Include both MT and UTC when relevant for trading sessions.
 - **ETA**: Always include ETA when discussing upcoming events or session times. Use minutes if under 2 hours (e.g., "~40 min"), otherwise use hours (e.g., "~3h").
+- **Full Analysis**: When user asks for "full analysis" on any symbol, **always draw on TradingView chart**:
+  1. **200 SMA** - Add Moving Average indicator with length 200 (trend filter)
+  2. **FVGs (Fair Value Gaps)** - Green rectangles for bullish, red for bearish
+  3. **Order Blocks** - Orange/blue rectangles with labels
+  4. **Unicorn Entry zones** - Purple rectangles (Breaker + FVG overlap)
+  5. **Trend lines** - Connect swing highs (red) and swing lows (green)
+  6. **Liquidity levels** - Horizontal lines at swing highs (BSL) and lows (SSL)
+  7. **Labels** - Text annotations for each zone type
+  8. **Screenshot** - Capture and display the annotated chart
 
 ## Quick Commands
 
